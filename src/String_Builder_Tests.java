@@ -1,12 +1,10 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.io.PrintStream;
-
 public class String_Builder_Tests {
 
     @Test
-    public void checkCapacityError(){
+    public void checkCapacityError() {
         String_Builder builder = new String_Builder(2);
         builder.append("Hello");
         builder.append("Hello");
@@ -16,6 +14,7 @@ public class String_Builder_Tests {
         Assertions.assertEquals("HelloHello", builder.getString());
 
     }
+
     @Test
     public void checkIfAppendGenerallyWorks() {
         String_Builder builder = new String_Builder();
@@ -24,7 +23,7 @@ public class String_Builder_Tests {
     }
 
     @Test
-    public void checkIfCanAddCharacters(){
+    public void checkIfCanAddCharacters() {
         String_Builder builder = new String_Builder(2);
         builder.append('c');
         builder.append('e');
@@ -33,7 +32,7 @@ public class String_Builder_Tests {
 
 
     @Test
-    public void checkAddCharacterArray(){
+    public void checkAddCharacterArray() {
         String_Builder builder = new String_Builder();
         char[] c = {'a', 'b', 'c', 'd'};
         builder.append(c);
@@ -42,7 +41,7 @@ public class String_Builder_Tests {
     }
 
     @Test
-    public void checkAddCharacterArrayWithOffset(){
+    public void checkAddCharacterArrayWithOffset() {
         String_Builder builder = new String_Builder();
         char[] c = {'a', 'b', 'c', 'd'};
         builder.append(c, 1, c.length);
@@ -50,7 +49,7 @@ public class String_Builder_Tests {
     }
 
     @Test
-    public void checkAddDouble(){
+    public void checkAddDouble() {
         String_Builder builder = new String_Builder();
         builder.append(45.0);
         builder.append(22.6);
@@ -58,7 +57,7 @@ public class String_Builder_Tests {
     }
 
     @Test
-    public void checkRestAdding(){
+    public void checkRestAdding() {
         String_Builder builder = new String_Builder();
         builder.append(45.67543);
         builder.append(5);
@@ -67,23 +66,30 @@ public class String_Builder_Tests {
     }
 
     @Test
-    public void CheckGetCharAtIndexWhenOutOfBounds(){
+    public void CheckGetCharAtIndexWhenOutOfBounds() {
         String_Builder builder = new String_Builder();
         builder.append("ccc");
         Throwable exception = Assertions.assertThrows(StringIndexOutOfBoundsException.class,
-                ()->{builder.charAt(5);} );
+                () -> {
+                    builder.charAt(5);
+                });
     }
 
     @Test
-    public void CheckDeleteWithOneIndex(){
+    public void CheckDeleteWithOneIndex() {
         String_Builder builder = new String_Builder();
         builder.append("My Name is Manny");
-        builder.delete(6);
+        builder.deleteCharAt(6);
         Assertions.assertEquals("My Nam is Manny", builder.getString());
     }
 
-
-
+    @Test
+    public void CheckDeleteWithTwoIndexes() {
+        String_Builder builder = new String_Builder();
+        builder.append("abcdefg");
+        builder.delete(1, 4);
+        Assertions.assertEquals("afg", builder.getString());
+    }
 
 
 }

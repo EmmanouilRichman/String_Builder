@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class String_Builder {
-    private int maxSize;
+    private final int maxSize;
     private ArrayList<String> builder;
 
     public String_Builder() {
@@ -20,7 +20,7 @@ public class String_Builder {
     }
 
     public void append(boolean b) {
-        if(!checkCapacity(1)){
+        if (!checkCapacity(1)) {
             System.out.println("Not enough space");
         }
         if (b == true) {
@@ -31,142 +31,142 @@ public class String_Builder {
     }
 
     public void append(char c) {
-        if(!checkCapacity(1)){
+        if (!checkCapacity(1)) {
             System.out.println("Not enough space");
         }
         builder.add(Character.toString(c));
     }
 
-    public void append(char[] c){
-        if(!checkCapacity(c.length)){
+    public void append(char[] c) {
+        if (!checkCapacity(c.length)) {
             System.out.println("Not enough space");
-        }
-        else{
-            for(char character : c ){
+        } else {
+            for (char character : c) {
                 builder.add(Character.toString(character));
             }
         }
     }
 
-    public void append(char[] str, int offset, int len){
-        if(!checkCapacity(len - offset)){
+    public void append(char[] str, int offset, int len) {
+        if (!checkCapacity(len - offset)) {
             System.out.printf("Not Enough space");
-        }
-        else{
-            for(int i = offset; i < len; i++){
+        } else {
+            for (int i = offset; i < len; i++) {
                 Character item = str[i];
                 builder.add(item.toString());
             }
         }
     }
 
-    public void append(double d){
-        if(!checkCapacity(1)){
+    public void append(double d) {
+        if (!checkCapacity(1)) {
             System.out.println("Not Enough Space");
-        }
-        else{
+        } else {
             builder.add(Double.toString(d));
         }
     }
 
-    public void append(float f){
-        if(!checkCapacity(1)){
+    public void append(float f) {
+        if (!checkCapacity(1)) {
             System.out.println("Not Enough Space");
-        }
-        else{
+        } else {
             builder.add(Float.toString(f));
         }
     }
 
-    public void append(int i){
-        if(!checkCapacity(1)){
+    public void append(int i) {
+        if (!checkCapacity(1)) {
             System.out.println("Not Enough Space");
-        }
-        else{
+        } else {
             builder.add(Integer.toString(i));
         }
     }
 
-    public void append(long l){
-        if(!checkCapacity(1)){
+    public void append(long l) {
+        if (!checkCapacity(1)) {
             System.out.println("Not Enough Space");
-        }
-        else{
+        } else {
             builder.add(Long.toString(l));
         }
     }
 
-    public void append(Object obj){
-        if(!checkCapacity(1)){
+    public void append(Object obj) {
+        if (!checkCapacity(1)) {
             System.out.println("Not Enough Space");
-        }
-        else{
+        } else {
             builder.add(obj.toString());
         }
     }
 
 
-    public void append(String str){
-        if(!checkCapacity(1)){
+    public void append(String str) {
+        if (!checkCapacity(1)) {
             System.out.println("Not enough space");
 
-        }
-        else{
+        } else {
             builder.add(str);
         }
     }
 
-    public char charAt(int index) throws StringIndexOutOfBoundsException{
+    public char charAt(int index) throws StringIndexOutOfBoundsException {
         String wholeString = "";
 
         wholeString = getString();
-        if(index <= 0 || index >= wholeString.length()){
+        if (index <= 0 || index >= wholeString.length()) {
             throw new StringIndexOutOfBoundsException();
         }
 
         return wholeString.charAt(index);
     }
 
-    public void delete(int index){
+    public void deleteCharAt(int index) {
 
         String theString = builder.toString();
-        if(index < 0 || index > theString.length() - 1) {
+        if (index < 0 || index > theString.length() - 1) {
             System.out.print("Not a valid index");
-        }
-        else{
-         String newString = "";
-         newString = theString.substring(1, index + 1);
-         newString += theString.substring(index + 2,theString.length() - 1);
-         builder.clear();
-         builder.add(newString);
+        } else {
+            String newString = "";
+            newString = theString.substring(1, index + 1);
+            newString += theString.substring(index + 2, theString.length() - 1);
+            clear();
+            builder.add(newString);
         }
 
     }
+
+    public void delete(int start, int end) {
+        String theString = builder.toString();
+        if (start < 0 || end > theString.length() - 1) {
+            System.out.print("Not a valid index");
+        } else {
+            String newString = "";
+            String first = theString.substring(1, start + 1);
+            String last = theString.substring(end + 2, theString.length() - 1);
+            newString = first + last;
+            clear();
+            builder.add(newString);
+        }
+    }
+
+
 
     public int getMaxSize() {
         return maxSize;
     }
 
-    public boolean checkCapacity(int size){
-        if(builder.size() != Integer.MAX_VALUE && (builder.size() + size) <= getMaxSize()){
-            return true;
-        }
-        else{
-            return false;
-        }
+    public boolean checkCapacity(int size) {
+        return builder.size() != Integer.MAX_VALUE && (builder.size() + size) <= getMaxSize();
     }
 
-    public String getString()
-    {
+    public String getString() {
         String answer = "";
-        for(String s : builder)
-        {
+        for (String s : builder) {
             answer += s;
         }
         return answer;
     }
 
-    public void clear(){
+    public void clear() {
         builder.clear();
     }
 }
