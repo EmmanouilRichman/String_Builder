@@ -92,4 +92,19 @@ public class String_Builder_Tests {
     }
 
 
+    @Test
+    public void CheckGetChars(){
+        String_Builder builder = new String_Builder();
+        builder.append("HelloWorld");
+        char[] answer = new char[6];
+        builder.getChars(0, 5, answer, 0);
+        String returnedValue = "";
+        for(char c : answer){
+            returnedValue += Character.toString(c);
+        }
+        returnedValue = returnedValue.substring(0, returnedValue.length() - 1);
+        Assertions.assertEquals("Hello", returnedValue);
+    }
+
+
 }

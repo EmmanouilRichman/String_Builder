@@ -112,7 +112,7 @@ public class String_Builder {
         String wholeString = "";
 
         wholeString = getString();
-        if (index <= 0 || index >= wholeString.length()) {
+        if (index < 0 || index >= wholeString.length()) {
             throw new StringIndexOutOfBoundsException();
         }
 
@@ -148,7 +148,20 @@ public class String_Builder {
         }
     }
 
-
+    public char[] getChars(int srcBegin, int srcEnd, char [] dest, int dstBegin){
+        String toParse = getString();
+        if(srcBegin < 0 || srcEnd > toParse.length() - 1){
+            System.out.print("Not a valid index range");
+        }
+        else{
+            int j = dstBegin;
+            for(int i = srcBegin; i < srcEnd; i++) {
+                dest[j] = charAt(i);
+                j++;
+            }
+        }
+        return dest;
+    }
 
     public int getMaxSize() {
         return maxSize;
