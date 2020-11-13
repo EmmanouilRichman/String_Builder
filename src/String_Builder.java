@@ -121,13 +121,13 @@ public class String_Builder {
 
     public void deleteCharAt(int index) {
 
-        String theString = builder.toString();
+        String theString = getString();
         if (index < 0 || index > theString.length() - 1) {
             System.out.print("Not a valid index");
         } else {
             String newString = "";
-            newString = theString.substring(1, index + 1);
-            newString += theString.substring(index + 2, theString.length() - 1);
+            newString = theString.substring(0, index);
+            newString += theString.substring(index + 1, theString.length());
             clear();
             builder.add(newString);
         }
@@ -135,13 +135,13 @@ public class String_Builder {
     }
 
     public void delete(int start, int end) {
-        String theString = builder.toString();
+        String theString = getString();
         if (start < 0 || end > theString.length() - 1) {
             System.out.print("Not a valid index");
         } else {
             String newString = "";
-            String first = theString.substring(1, start + 1);
-            String last = theString.substring(end + 2, theString.length() - 1);
+            String first = theString.substring(0, start);
+            String last = theString.substring(end + 1, theString.length());
             newString = first + last;
             clear();
             builder.add(newString);
@@ -162,6 +162,8 @@ public class String_Builder {
         }
         return dest;
     }
+
+
 
     public int getMaxSize() {
         return maxSize;
