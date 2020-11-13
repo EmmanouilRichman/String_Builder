@@ -109,8 +109,19 @@ public class String_Builder_Tests {
     @Test
     public void CheckIndexOf(){
         String_Builder builder = new String_Builder();
-        builder.append("Hello I Hope You Are Enjoiyng My Program");
+        builder.append("Hello I Hope You Are Enjoyng My Program");
         Assertions.assertEquals(8, builder.indexOf("Hope"));
+        Assertions.assertEquals(-1, builder.indexOf("Dog"));
+    }
+
+    @Test
+    public void CheckIndexOfWithIndexFrom(){
+        String_Builder builder = new String_Builder();
+        builder.append("Hello I Hope You Are Enjoying My Program");
+        Assertions.assertEquals(-1, "Dog");
+        Assertions.assertEquals(-1, "Hello");
+        Assertions.assertEquals(6, builder.indexOf("Hope", 6));
+        Assertions.assertEquals(0, builder.indexOf("Hello", 0));
     }
 
 

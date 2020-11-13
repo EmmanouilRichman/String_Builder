@@ -174,6 +174,22 @@ public class String_Builder {
        return index;
     }
 
+    public int indexOf(String str, int fromIndex){
+        int index = -1;
+        int totalSize = 0;
+        String theString = getString();
+        if(fromIndex < 0 || fromIndex >= theString.length()){
+            throw new NullPointerException();
+        }
+        else{
+            theString = theString.substring(fromIndex, theString.length() - 1);
+            if(theString.contains(str)){
+                return index = theString.indexOf(str);
+            }
+        }
+        return index;
+    }
+
 
     public int getMaxSize() {
         return maxSize;
