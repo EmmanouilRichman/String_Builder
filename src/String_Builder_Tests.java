@@ -106,5 +106,12 @@ public class String_Builder_Tests {
         Assertions.assertEquals("Hello", returnedValue);
     }
 
+    @Test
+    public void CheckIndexOf(){
+        String_Builder builder = new String_Builder();
+        builder.append("Hello I Hope You Are Enjoiyng My Program");
+        Assertions.assertEquals(8, builder.indexOf("Hope"));
+    }
+
 
 }

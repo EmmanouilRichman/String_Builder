@@ -16,6 +16,7 @@ public class String_Builder {
 
     public String_Builder(String str) {
         maxSize = Integer.MAX_VALUE;
+        builder = new ArrayList<>();
         builder.add(str);
     }
 
@@ -33,8 +34,9 @@ public class String_Builder {
     public void append(char c) {
         if (!checkCapacity(1)) {
             System.out.println("Not enough space");
+        } else {
+            builder.add(Character.toString(c));
         }
-        builder.add(Character.toString(c));
     }
 
     public void append(char[] c) {
@@ -127,7 +129,7 @@ public class String_Builder {
         } else {
             String newString = "";
             newString = theString.substring(0, index);
-            newString += theString.substring(index + 1, theString.length());
+            newString += theString.substring(index + 1);
             clear();
             builder.add(newString);
         }
@@ -141,21 +143,20 @@ public class String_Builder {
         } else {
             String newString = "";
             String first = theString.substring(0, start);
-            String last = theString.substring(end + 1, theString.length());
+            String last = theString.substring(end + 1);
             newString = first + last;
             clear();
             builder.add(newString);
         }
     }
 
-    public char[] getChars(int srcBegin, int srcEnd, char [] dest, int dstBegin){
+    public char[] getChars(int srcBegin, int srcEnd, char[] dest, int dstBegin) {
         String toParse = getString();
-        if(srcBegin < 0 || srcEnd > toParse.length() - 1){
+        if (srcBegin < 0 || srcEnd > toParse.length() - 1) {
             System.out.print("Not a valid index range");
-        }
-        else{
+        } else {
             int j = dstBegin;
-            for(int i = srcBegin; i < srcEnd; i++) {
+            for (int i = srcBegin; i < srcEnd; i++) {
                 dest[j] = charAt(i);
                 j++;
             }
@@ -163,6 +164,15 @@ public class String_Builder {
         return dest;
     }
 
+    public int indexOf(String str){
+        int index = -1;
+        int totalSize = 0;
+        String theString = getString();
+       if(theString.contains(str)){
+          index = theString.indexOf(str);
+       }
+       return index;
+    }
 
 
     public int getMaxSize() {
