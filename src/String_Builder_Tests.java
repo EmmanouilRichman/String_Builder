@@ -60,12 +60,30 @@ public class String_Builder_Tests {
     @Test
     public void checkRestAdding(){
         String_Builder builder = new String_Builder();
-        String_Builder builder2 = new String_Builder();
         builder.append(45.67543);
         builder.append(5);
         builder.append("hi");
         Assertions.assertEquals("45.675435hi", builder.getString());
     }
+
+    @Test
+    public void CheckGetCharAtIndexWhenOutOfBounds(){
+        String_Builder builder = new String_Builder();
+        builder.append("ccc");
+        Throwable exception = Assertions.assertThrows(StringIndexOutOfBoundsException.class,
+                ()->{builder.charAt(5);} );
+    }
+
+    @Test
+    public void CheckDeleteWithOneIndex(){
+        String_Builder builder = new String_Builder();
+        builder.append("My Name is Manny");
+        builder.delete(6);
+        Assertions.assertEquals("My Nam is Manny", builder.getString());
+    }
+
+
+
 
 
 }

@@ -116,6 +116,33 @@ public class String_Builder {
         }
     }
 
+    public char charAt(int index) throws StringIndexOutOfBoundsException{
+        String wholeString = "";
+
+        wholeString = getString();
+        if(index <= 0 || index >= wholeString.length()){
+            throw new StringIndexOutOfBoundsException();
+        }
+
+        return wholeString.charAt(index);
+    }
+
+    public void delete(int index){
+
+        String theString = builder.toString();
+        if(index < 0 || index > theString.length() - 1) {
+            System.out.print("Not a valid index");
+        }
+        else{
+         String newString = "";
+         newString = theString.substring(1, index + 1);
+         newString += theString.substring(index + 2,theString.length() - 1);
+         builder.clear();
+         builder.add(newString);
+        }
+
+    }
+
     public int getMaxSize() {
         return maxSize;
     }
