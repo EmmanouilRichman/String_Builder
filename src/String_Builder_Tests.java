@@ -93,13 +93,13 @@ public class String_Builder_Tests {
 
 
     @Test
-    public void CheckGetChars(){
+    public void CheckGetChars() {
         String_Builder builder = new String_Builder();
         builder.append("HelloWorld");
         char[] answer = new char[6];
         builder.getChars(0, 5, answer, 0);
         String returnedValue = "";
-        for(char c : answer){
+        for (char c : answer) {
             returnedValue += Character.toString(c);
         }
         returnedValue = returnedValue.substring(0, returnedValue.length() - 1);
@@ -107,7 +107,7 @@ public class String_Builder_Tests {
     }
 
     @Test
-    public void CheckIndexOf(){
+    public void CheckIndexOf() {
         String_Builder builder = new String_Builder();
         builder.append("Hello I Hope You Are Enjoyng My Program");
         Assertions.assertEquals(8, builder.indexOf("Hope"));
@@ -115,7 +115,7 @@ public class String_Builder_Tests {
     }
 
     @Test
-    public void CheckIndexOfWithIndexFrom(){
+    public void CheckIndexOfWithIndexFrom() {
         String_Builder builder = new String_Builder();
         builder.append("Hello I Hope You Are Enjoying My Program");
         Assertions.assertEquals(-1, "Dog");
@@ -124,5 +124,30 @@ public class String_Builder_Tests {
         Assertions.assertEquals(0, builder.indexOf("Hello", 0));
     }
 
+    @Test
+    public void CheckInsertBoolean() {
+        String_Builder builder = new String_Builder();
+        builder.append("Hello I Hope You Are Enjoying My Program");
+        builder.insert(0, true);
+        Assertions.assertEquals("trueHello I Hope You Are Enjoying My Program", builder.getString());
+
+        builder.clear();
+        builder.append("Hello I Hope You Are Enjoying My Program");
+        builder.insert(1, false);
+        Assertions.assertEquals("Hfalseello I Hope You Are Enjoying My Program", builder.getString());
+
+        builder.clear();
+        builder.append("Hello I Hope You Are Enjoying My Program");
+        builder.insert(39, true);
+        Assertions.assertEquals("Hello I Hope You Are Enjoying My Programtrue", builder.getString());
+    }
+
+    @Test
+    public void CheckInsertChar() {
+        String_Builder builder = new String_Builder();
+        builder.append("Hello I Hope You Are Enjoying My Program");
+        builder.insert(0, 'H');
+        Assertions.assertEquals("HHello I Hope You Are Enjoying My Program", builder.getString());
+    }
 
 }
